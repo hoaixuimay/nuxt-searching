@@ -10,7 +10,8 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
-    "nuxt": "^2.14.6"
+    "nuxt": "^2.14.6",
+    "@nuxtjs/axios": "^5.12.2"
   },
   "devDependencies": {}
 }

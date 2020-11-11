@@ -6,14 +6,20 @@
         <img class="logo__img" src="images/calendar.svg" />
       </div>
       <div class="search">
-        <input name="search" />
+        <input :value="searchInput" @input="searchBooks($event.target.value)"/>
       </div>
       <div class="add-book">
         <input type="button" name="addBook" value="add book" @click="toAddPage()" />
       </div>
     </Header>
     <div class="content">
-
+      <div class="book-container">
+        <div class="book-item" v-for="(book, index) in foundBooks" :key="index">
+          <h3>{{book.name}}</h3>
+          <h3>{{book.author}}</h3>
+          <h3>{{book.publishedYear}}</h3>
+        </div>
+      </div>
     </div>
     <Footer>
       <slot></slot>
@@ -33,16 +39,25 @@ export default {
   },
   data() {
     return {
-      books: [
-        {name: "Never die", image: "", author: "Johny Depth", publishedYear: "1989"},
-        {name: "Sky walker", image: "", author: "Claudia Papalope", publishedYear: "2000"},
-        {name: "Walking through the forest", image: "", author: "Walking Dead", publishedYear: "2007"}
-      ]
+      searchInput: null
+    };
+  },
+  computed: {
+    books() {
+      return this.$store.getters.books;
+    },
+    foundBooks() {
+      return this.$store.getters.foundBooks;
     }
   },
   methods: {
     toAddPage() {
       this.$router.push("/add");
+    },
+    searchBooks(value){
+      this.searchInput = value;
+      console.log(this.searchInput);
+      this.$store.dispatch("searchBooks", this.searchInput);
     }
   }
 }
