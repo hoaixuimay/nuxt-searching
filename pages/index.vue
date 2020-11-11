@@ -9,36 +9,12 @@
         <input name="search" />
       </div>
       <div class="add-book">
-        <input type="button" name="addBook" value="add book" />
+        <input type="button" name="addBook" value="add book" @click="toAddPage()" />
       </div>
     </Header>
     <div class="content">
 
     </div>
-    <!-- <div class="content">
-      <Logo />
-      <h1 class="title">
-        nuxt-searching
-      </h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
-    </div> -->
     <Footer>
       <slot></slot>
       <h3>Copyright</h3>
@@ -48,8 +24,27 @@
 </template>
 
 <script>
+import Header from '~/components/Header.vue';
+import Footer from '~/components/Footer.vue';
 export default {
-  components: true
+  components: {
+    Header,
+    Footer
+  },
+  data() {
+    return {
+      books: [
+        {name: "Never die", image: "", author: "Johny Depth", publishedYear: "1989"},
+        {name: "Sky walker", image: "", author: "Claudia Papalope", publishedYear: "2000"},
+        {name: "Walking through the forest", image: "", author: "Walking Dead", publishedYear: "2007"}
+      ]
+    }
+  },
+  methods: {
+    toAddPage() {
+      this.$router.push("/add");
+    }
+  }
 }
 </script>
 
