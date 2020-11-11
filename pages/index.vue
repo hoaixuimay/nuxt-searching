@@ -1,6 +1,21 @@
 <template>
   <div class="container">
-    <div>
+    <Header>
+      <slot></slot>
+      <div class="logo">
+        <img class="logo__img" src="images/calendar.svg" />
+      </div>
+      <div class="search">
+        <input name="search" />
+      </div>
+      <div class="add-book">
+        <input type="button" name="addBook" value="add book" />
+      </div>
+    </Header>
+    <div class="content">
+
+    </div>
+    <!-- <div class="content">
       <Logo />
       <h1 class="title">
         nuxt-searching
@@ -23,12 +38,19 @@
           GitHub
         </a>
       </div>
-    </div>
+    </div> -->
+    <Footer>
+      <slot></slot>
+      <h3>Copyright</h3>
+    </Footer>
+    <div class="footer"></div>
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  components: true
+}
 </script>
 
 <style>
