@@ -10,7 +10,27 @@
       </div>
     </Header>
     <div class="content">
-
+      <div class="add-book-form">
+        <div class="row">
+          <label>Book name</label>
+          <input v-model="bookName" />
+        </div>
+        <div class="row">
+          <label>Author</label>
+          <input v-model="author" />
+        </div>
+        <div class="row">
+          <label>Public year</label>
+          <input v-model="publicYear" />
+        </div>
+        <div class="row">
+          <label>Description</label>
+          <input v-model="description" />
+        </div>
+        <div>
+          <input type="button" value="Save" @click="saveBook()">
+        </div>
+      </div>
     </div>
     <Footer>
       <slot></slot>
@@ -30,12 +50,30 @@ export default {
   },
   data() {
     return {
-      
+      bookName: "",
+      author: "",
+      publicYear: "",
+      description: ""
     }
   },
   methods: {
     toHomePage() {
       this.$router.push("/");
+    },
+    saveBook() {
+      let book = {
+        name: this.bookName, 
+        image: "", 
+        author: this.author, 
+        publishedYear: this.publicYear, 
+        description: this.description
+      };
+      this.$store.dispatch("addBook", book);
+      // reset book
+      this.bookName = "";
+      this.author = "";
+      this.publicYear = "";
+      this.description = "";
     }
   }
 }
